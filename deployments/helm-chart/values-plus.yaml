@@ -1,5 +1,0 @@
-controller:
-  nginxplus: true
-  image:
-    repository: register.virington.com/nginx-plus-ingress
-    tag: "1.9.1"

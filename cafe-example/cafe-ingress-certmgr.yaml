@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: cafe-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "cert-manager-webhook-dnsimple-production"
+spec:
+  ingressClassName: nginx # use only with k8s version >= 1.18.0
+  tls:
+  - hosts:
+    - rdemo.zathras.io
+    secretName: rdemo-secret
+  rules:
+  - host: rdemo.zathras.io
+    http:
+      paths:
+      - path: /tea
+        backend:
+          serviceName: tea-svc
+          servicePort: 80
+      - path: /coffee
+        backend:
+          serviceName: coffee-svc
+          servicePort: 80
+
