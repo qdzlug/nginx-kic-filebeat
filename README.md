@@ -338,7 +338,7 @@ Use the [`cafe.yaml`](./examples/cafe.yaml) manifest. This can be applyed with `
 ### Ingress
 Note that you will need to change the hostname as required/desired. The example uses `rdemo.zathras.io` as it's hostname and generates a cert for the same. 
 
-To deploy with standard Ingress, use the [`cafe-ingress.yaml`](./examples/cafe-ingress.yaml) manifest.
+To deploy with standard Ingress, use the [`cafe-ingress.yaml`](./examples/cafe-ingress.yaml) manifest. Note that you will also need to create the self-signed cert which can be done by running [`cafe-secret.yaml`](./camples/cafe-secret.yaml). 
 
 To deploy with TLS secured Ingress, use the [`cafe-ingress-certmgr.yaml`](./examples/cafe-ingress-certmgr.yaml) manifest.
 
