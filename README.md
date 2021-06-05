@@ -1,3 +1,6 @@
+# Using NGINX KIC with Filebeat
+This document describes the process of using NGINX OSS and NGINX Plus KIC with Filebeat.
+
 ## 1. Rancher Deployment
 This HOWTO Assumes that you have a working Rancher deployment, the size of which is determined by what parts of the demo you will be hosting in the cluster.
 
@@ -322,6 +325,8 @@ Add the following to deploy the NGINX Plus KIC. Note that you will need to edit 
 
 Alternatively, use the [values.yaml](./nginx-helm/values.yaml).
 
+----
+
 ## 9. Deploy Test App
 For testing purposes, we will be using the standard NGINX Cafe demo. This is for convenience; any application can be used.
 
@@ -336,6 +341,8 @@ Note that you will need to change the hostname as required/desired. The example 
 To deploy with standard Ingress, use the [`cafe-ingress.yaml`](./examples/cafe-ingress.yaml) manifest.
 
 To deploy with TLS secured Ingress, use the [`cafe-ingress-certmgr.yaml`](./examples/cafe-ingress-certmgr.yaml) manifest.
+
+----
 
 ## 10. Setup Kibana
 Unlike a full deploy of the elasticstack, this version does not deploy all of the associated indexes and dashboards. To help address this issue, you can import an `ndjson` file that contains all of the necessary dashboards, visualizations, and index patterns required to view NGINX data.
@@ -354,6 +361,8 @@ Now make sure you have an Index pattern defined. To do this:
 - Click on "Visualizations"
 - Follow the instructions to create an index pattern for `filebeat-7.13.1-`
 
+----
+
 ## 11. Test the Application
 You can now test the application. Using the test `rdemo.zathras.io` domain this would look like this:
 
@@ -363,6 +372,8 @@ curl https://rdemo.zathras.io/cofee
 ```
 
 You can also test from a web browser.
+
+----
 
 ## 12. Generate Load Against the Application
 In order to generate a load against the server, you can use the [`seige`](https://github.com/JoeDog/siege) load tester. This can be setup to use a file that contains the two above URL's then run via:
@@ -380,5 +391,9 @@ siege -c 5 -d 2  -f ./test-urls
 
 This will create enough load that you will be able to visualize the data in Kibana. This process can be stopped at any time via `^C`.
 
+----
+
 ## 13. View Kibana Dashboards
 From within the Kibana GUI, you can click on "Dashboards" and then search on "NGINX" to find the various related dashboards to view the data that is being sent back from the NGINX KIC during the test.
+
+----
